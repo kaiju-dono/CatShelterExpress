@@ -7,6 +7,11 @@ const handlebars = require('express-handlebars');
 // Serving static files 
 app.use(express.static('public'));
 
+//Middleware for handling forms
+app.use(express.json()); // used to parse JSON bodies
+app.use(express.urlencoded()); //Parse URL-encoded bodies
+
+
 // setup template engine | handlebars {{}} | a config object
 app.set('view engine', 'hbs')
 app.engine('hbs', handlebars.engine({
