@@ -2,7 +2,7 @@ const express = require('express');
 const app = express()
 const port = 3080
 const handlebars = require('express-handlebars');
-
+var axios = require('axios');
 
 // Serving static files 
 app.use(express.static('public'));
@@ -41,10 +41,46 @@ app.get("/cats/add-breed", (req, res) => {
 app.post("/cats/add-breed", (req, res) => {
   console.log("POST /cats/add-breed");
   console.log("req.body", req.body);
+  var axios = require('axios');
+var data = '{\n    "Breed": "Bengal"\n}';
+
+var config = {
+  method: 'post',
+  url: 'https://cat-shelter-52e19-default-rtdb.firebaseio.com/breeds.json',
+  headers: { 
+    'Content-Type': 'text/plain'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+  
 })
 
-app.get("/cats/add-cat", (req, res) => {
-  res.render('addCat', {});
+app.get("/cats/add-cat", async (req, res) => {
+  let breeds = [];
+  var config = {
+    method: 'get',
+    url: 'https://cat-shelter-52e19-default-rtdb.firebaseio.com/breeds.json',
+    headers: { }
+  };
+  
+  await axios(config)
+  .then(function (response) {
+    breeds = Object.values(response.data);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  console.log('breeds obj is', breeds);
+  res.render('addCat', {})
 })
 
 app.post("/cats/add-cat", (req, res) => {
