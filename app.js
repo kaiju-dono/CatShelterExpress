@@ -38,8 +38,17 @@ app.get("/cats/add-breed", (req, res) => {
   res.render('addBreed', {});
 })
 
+app.post("/cats/add-breed", (req, res) => {
+  console.log("POST /cats/add-breed");
+  console.log("req.body", req.body);
+})
+
 app.get("/cats/add-cat", (req, res) => {
   res.render('addCat', {});
+})
+
+app.post("/cats/add-cat", (req, res) => {
+  console.log("req.body", req.body);
 })
 
 app.get("/cats/edit-cat", (req, res) => {
