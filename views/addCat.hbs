@@ -8,7 +8,9 @@
             <input name="upload" type="file" id="image">
             <label for="group">Breed</label>
             <select name="Breed" id="group">
-                {{breeds}}
+                {{#each breeds}}
+                    {{> breedOption breed=this}} <!--how to loop a partial-->
+                {{/each}}
             </select>
             <button type="submit">Add Cat</button>
         </form>
