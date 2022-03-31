@@ -44,10 +44,7 @@ await axios(config).then(function (response) {
   console.log(error)
 });
 console.log('cats from firebase are', cats)
-res.render('home', {
-  name:'Yoda',
-  cats,
-})
+res.render('home', {cats})
 
 });
 
