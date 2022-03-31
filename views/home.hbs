@@ -1,8 +1,10 @@
     <main>
         <section class="cats">
             <ul>
-              {{cats}}
-                <li>
+            {{#each cats}}
+                {{> catLI cat=this}}
+            {{/each}}
+             <!--   <li>
 					<img src="https://cdn.pixabay.com/photo/2015/03/27/13/16/cat-694730_1280.jpg" alt="Black Cat">
 					<h3></h3>
 					<p><span>Breed: </span>Bombay Cat</p>
@@ -12,7 +14,7 @@
 						<li class="btn delete"><a href="/cats/cat-shelter">New Home</a></li>
 					</ul>
 				</li>
-			<!--	<li>
+				<li>
                     <img src="https://cdn.pixabay.com/photo/2015/06/19/14/20/cat-814952_1280.jpg" alt="">
                     <h3>Pretty Kitty</h3>
                     <p><span>Breed: </span>Bombay Cat</p>
